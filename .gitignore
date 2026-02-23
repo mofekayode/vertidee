@@ -39,7 +39,7 @@ yarn-error.log*
 *.mov
 public/assets/img/portfolio/
 public/assets/video/
-data/
+/data/
 PROGRESS.md
 
 # typescript
