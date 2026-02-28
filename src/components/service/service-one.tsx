@@ -53,20 +53,10 @@ const ServiceOne = () => {
         <div className="row">
           <div className="col-xl-6 col-lg-6">
             <div className="tp-service-title-box p-relative">
-              <span className="tp-section-subtitle tp-char-animation" style={{ display: "block", marginBottom: "15px" }}>What We Do</span>
               <h4 className="tp-section-title tp-char-animation">
                 Our<br />
                 <span>Services</span>
               </h4>
-            </div>
-
-            <div className="tp-service-left-btn tp-btn-bounce" style={{ marginTop: "40px" }}>
-              <Link className="tp-btn-border" href="/services">
-                <span className="tp-btn-border-wrap">
-                  <span className="text-1">See All Services</span>
-                  <span className="text-2">See All Services</span>
-                </span>
-              </Link>
             </div>
           </div>
           <div className="col-xl-6 col-lg-6">
@@ -90,7 +80,7 @@ const ServiceOne = () => {
                   </div>
                   <div className="tp-service-content">
                     <h4 className="tp-service-title-sm order-0">
-                      <Link href={s.link}>{s.title}</Link>
+                      <Link href={s.link} style={{ color: "#61A706" }}>{s.title}</Link>
                     </h4>
                     <p className="order-1">{s.desc}</p>
                   </div>

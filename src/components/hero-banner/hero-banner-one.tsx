@@ -53,9 +53,10 @@ const HeroBannerOne = () => {
             <div className="tp-hero-content tp_fade_bottom">
               <p>
                 <span></span>
-                Full-service advertising agency partnering with brands to create
-                unforgettable experiences. From creative strategy to experiential
-                marketing, we bring your brand to life across Lagos and Nigeria.
+                partnering with brands to
+                create unforgettable experiences; from Brief to Strategy to
+                Execution, we bring your brand to life across Nigeria and other
+                emerging markets.
               </p>
             </div>
           </div>

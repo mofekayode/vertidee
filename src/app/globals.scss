@@ -65,13 +65,13 @@
   padding-top: -40px;
 }
 
-/* Accent color (#00AEEF) - Vert Idee brand teal */
+/* Accent color (#007A9A) - Vert Idee brand teal */
 
 /* Section subtitles / labels */
 .tp-section-subtitle,
 .tp-section-subtitle-2,
 .tp-hero-subtitle {
-  color: #00AEEF !important;
+  color: #007A9A !important;
 }
 
 /* Section titles */
@@ -79,7 +79,7 @@
 .tp-section-title-90,
 .tp-about-2-section-title,
 .tp-section-title-200 {
-  color: #00AEEF !important;
+  color: #007A9A !important;
 }
 
 /* Page hero titles on inner pages */
@@ -88,74 +88,96 @@
 .ab-inner-hero-title,
 .sv-hero-title,
 .sv-big-text {
-  color: #00AEEF !important;
+  color: #007A9A !important;
 }
 
 /* Blog titles */
 .blog-details-title,
 .tp-section-title.fs-160 {
-  color: #00AEEF !important;
+  color: #007A9A !important;
 }
 
 /* Hero content accent line */
 .tp-hero-content p span {
-  background-color: #00AEEF !important;
+  background-color: #007A9A !important;
 }
 
-/* Navigation hover */
+/* Navigation links - brand blue */
+.tp-main-menu-content ul li a {
+  color: #007A9A !important;
+}
 .tp-main-menu-content ul li a:hover,
 .tp-main-menu-content ul li.active > a {
-  color: #00AEEF !important;
+  color: #005F78 !important;
 }
 
 /* Buttons */
 .tp-btn, .tp-btn-2 {
-  background-color: #00AEEF !important;
-  border-color: #00AEEF !important;
+  background-color: #007A9A !important;
+  border-color: #007A9A !important;
 }
 .tp-btn:hover, .tp-btn-2:hover {
-  background-color: #008EC0 !important;
-  border-color: #008EC0 !important;
+  background-color: #005F78 !important;
+  border-color: #005F78 !important;
 }
 
 /* Links */
 a:hover {
-  color: #00AEEF;
+  color: #007A9A;
 }
 
 /* Service items hover */
 .tp-service-2-item:hover .tp-service-2-title,
 .tp-service-item:hover .tp-service-title {
-  color: #00AEEF !important;
+  color: #007A9A !important;
 }
 
 
 /* Footer social */
 .tp-footer-2-widget-social a:hover,
 .tp-footer-widget-social a:hover {
-  background-color: #00AEEF !important;
-  border-color: #00AEEF !important;
+  background-color: #007A9A !important;
+  border-color: #007A9A !important;
 }
 
 /* Offcanvas / mobile menu */
 .tp-offcanvas-social a:hover {
-  color: #00AEEF !important;
+  color: #007A9A !important;
 }
 .tp-offcanvas-menu ul li a:hover {
-  color: #00AEEF !important;
+  color: #007A9A !important;
 }
 
 /* Blog tags */
 .postbox__tag a:hover,
 .sidebar__tag a:hover {
-  background-color: #00AEEF !important;
-  border-color: #00AEEF !important;
+  background-color: #007A9A !important;
+  border-color: #007A9A !important;
   color: #fff !important;
 }
 
 /* Breadcrumb active */
 .breadcrumb-item.active {
-  color: #00AEEF !important;
+  color: #007A9A !important;
+}
+
+/* Hero section - fit within viewport height */
+.tp-hero-area.tp-hero-ptb {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: clamp(80px, 12vh, 200px) !important;
+  padding-bottom: 20px;
+  box-sizing: border-box;
+}
+
+.tp-hero-area .tp-hero-title {
+  font-size: clamp(70px, min(15vw, 20vh), 220px) !important;
+}
+
+.tp-hero-area .tp-hero-content {
+  margin-bottom: clamp(30px, 6vh, 120px) !important;
 }
 
 /* Team horizontal scroll - hide scrollbar */
