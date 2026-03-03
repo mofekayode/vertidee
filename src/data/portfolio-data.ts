@@ -16,7 +16,7 @@ const portfolio_data = [
   {
     id: 3,
     img: "/assets/img/portfolio/general/Enchanteur_1.jpg",
-    category: "Branding",
+    category: "Creative",
     year: "2024",
     title: "Enchanteur Campaign",
   },
@@ -37,7 +37,7 @@ const portfolio_data = [
   {
     id: 6,
     img: "/assets/img/portfolio/modern-trade/1.jpg",
-    category: "Retail",
+    category: "Activation",
     year: "2024",
     title: "Modern Trade Display",
   },
@@ -51,7 +51,7 @@ const portfolio_data = [
   {
     id: 8,
     img: "/assets/img/portfolio/general/ORS_1.jpg",
-    category: "Branding",
+    category: "Creative",
     year: "2024",
     title: "ORS Brand Campaign",
   },

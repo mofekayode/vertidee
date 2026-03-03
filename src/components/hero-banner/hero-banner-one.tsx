@@ -50,8 +50,8 @@ const HeroBannerOne = () => {
                 </h1>
               </div>
             </div>
-            <div className="tp-hero-content tp_fade_bottom">
-              <p>
+            <div className="tp-hero-content" style={{ opacity: 1 }}>
+              <p style={{ fontSize: "clamp(16px, 1.8vw, 22px)", lineHeight: 1.6 }}>
                 <span></span>
                 partnering with brands to
                 create unforgettable experiences; from Brief to Strategy to

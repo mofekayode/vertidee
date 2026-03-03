@@ -28,13 +28,13 @@ const VideOne = () => {
           }}>Vert Idee</h2>
           <p style={{
             fontFamily: "var(--tp-ff-body)",
-            fontSize: "clamp(14px, 2vw, 24px)",
+            fontSize: "clamp(18px, 2.5vw, 32px)",
             fontWeight: 400,
             fontStyle: "italic",
             margin: 0,
             letterSpacing: "0.15em",
             textTransform: "uppercase",
-            color: "#61A706",
+            color: "#FFFFFF",
             textShadow: "0 1px 10px rgba(0,0,0,0.8)",
           }}>Fresh Ideas</p>
         </div>

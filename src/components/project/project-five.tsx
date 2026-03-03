@@ -63,15 +63,15 @@ const project_data = [
   { id: 51, title: "Branded Billboard", category: "Outdoor", img: "/assets/img/portfolio/outdoor/19.jpg" },
   { id: 52, title: "Outdoor Display", category: "Outdoor", img: "/assets/img/portfolio/outdoor/20.jpg" },
 
-  // Modern Trade
-  { id: 53, title: "In-Store Display", category: "Modern Trade", img: "/assets/img/portfolio/modern-trade/1.jpg" },
-  { id: 54, title: "Retail Branding", category: "Modern Trade", img: "/assets/img/portfolio/modern-trade/2.jpg" },
-  { id: 55, title: "Shelf Branding", category: "Modern Trade", img: "/assets/img/portfolio/modern-trade/3.jpg" },
-  { id: 56, title: "POS Display", category: "Modern Trade", img: "/assets/img/portfolio/modern-trade/4.jpg" },
-  { id: 57, title: "Store Activation", category: "Modern Trade", img: "/assets/img/portfolio/modern-trade/5.jpg" },
-  { id: 58, title: "Gondola Display", category: "Modern Trade", img: "/assets/img/portfolio/modern-trade/6.jpg" },
-  { id: 59, title: "Trade Display", category: "Modern Trade", img: "/assets/img/portfolio/modern-trade/7.jpg" },
-  { id: 60, title: "Retail Activation", category: "Modern Trade", img: "/assets/img/portfolio/modern-trade/8.jpg" },
+  // Modern Trade (under Activation)
+  { id: 53, title: "In-Store Display", category: "Activation", img: "/assets/img/portfolio/modern-trade/1.jpg" },
+  { id: 54, title: "Retail Branding", category: "Activation", img: "/assets/img/portfolio/modern-trade/2.jpg" },
+  { id: 55, title: "Shelf Branding", category: "Activation", img: "/assets/img/portfolio/modern-trade/3.jpg" },
+  { id: 56, title: "POS Display", category: "Activation", img: "/assets/img/portfolio/modern-trade/4.jpg" },
+  { id: 57, title: "Store Activation", category: "Activation", img: "/assets/img/portfolio/modern-trade/5.jpg" },
+  { id: 58, title: "Gondola Display", category: "Activation", img: "/assets/img/portfolio/modern-trade/6.jpg" },
+  { id: 59, title: "Trade Display", category: "Activation", img: "/assets/img/portfolio/modern-trade/7.jpg" },
+  { id: 60, title: "Retail Activation", category: "Activation", img: "/assets/img/portfolio/modern-trade/8.jpg" },
 
   // Event Management
   { id: 61, title: "Corporate Conference", category: "Events", img: "/assets/img/portfolio/event-management/1.jpg" },
@@ -88,45 +88,45 @@ const project_data = [
   { id: 70, title: "Staff Development", category: "Training", img: "/assets/img/portfolio/training/4.jpg" },
 
   // General / Branding Work
-  { id: 71, title: "Enchanteur Campaign", category: "Branding", img: "/assets/img/portfolio/general/Enchanteur_1.jpg" },
-  { id: 72, title: "Enchanteur Display", category: "Branding", img: "/assets/img/portfolio/general/Enchanteur_2.jpg" },
-  { id: 73, title: "Enchanteur Promo", category: "Branding", img: "/assets/img/portfolio/general/Enchanteur_3.jpg" },
-  { id: 74, title: "Enchanteur Branding", category: "Branding", img: "/assets/img/portfolio/general/Enchanteur_4.jpg" },
-  { id: 75, title: "Enchanteur Creative", category: "Branding", img: "/assets/img/portfolio/general/Enchanteur_5.jpg" },
-  { id: 76, title: "Enchanteur Launch", category: "Branding", img: "/assets/img/portfolio/general/Enchanteur_6.jpg" },
-  { id: 77, title: "Enchanteur Design", category: "Branding", img: "/assets/img/portfolio/general/Enchanteur_7.jpg" },
-  { id: 78, title: "Enchanteur Activation", category: "Branding", img: "/assets/img/portfolio/general/Enchanteur_8.jpg" },
-  { id: 79, title: "Bio Oil Campaign", category: "Branding", img: "/assets/img/portfolio/general/Bio_Oil_1.jpg" },
-  { id: 80, title: "Bio Oil Display", category: "Branding", img: "/assets/img/portfolio/general/Bio_Oil_2.jpg" },
-  { id: 81, title: "Bio Oil Promo", category: "Branding", img: "/assets/img/portfolio/general/Bio_Oil_3.jpg" },
-  { id: 82, title: "Bio Oil Branding", category: "Branding", img: "/assets/img/portfolio/general/Bio_Oil_4.jpg" },
-  { id: 83, title: "NDL Campaign", category: "Branding", img: "/assets/img/portfolio/general/NDL1.jpg" },
-  { id: 84, title: "NDL Branding", category: "Branding", img: "/assets/img/portfolio/general/NDL2.jpg" },
-  { id: 85, title: "NDL Design", category: "Branding", img: "/assets/img/portfolio/general/NDL3.jpg" },
-  { id: 86, title: "NDL Display", category: "Branding", img: "/assets/img/portfolio/general/NDL4.jpg" },
-  { id: 87, title: "NDL Creative", category: "Branding", img: "/assets/img/portfolio/general/NDL5.jpg" },
-  { id: 88, title: "ORS Campaign", category: "Branding", img: "/assets/img/portfolio/general/ORS_1.jpg" },
-  { id: 89, title: "ORS Branding", category: "Branding", img: "/assets/img/portfolio/general/ORS_2.jpg" },
-  { id: 90, title: "ORS Display", category: "Branding", img: "/assets/img/portfolio/general/ORS_3.jpg" },
-  { id: 91, title: "ORS Promo", category: "Branding", img: "/assets/img/portfolio/general/ORS_4.jpg" },
-  { id: 92, title: "STI Campaign", category: "Branding", img: "/assets/img/portfolio/general/STI_1.jpg" },
-  { id: 93, title: "STI Branding", category: "Branding", img: "/assets/img/portfolio/general/STI_2.jpg" },
-  { id: 94, title: "STI Display", category: "Branding", img: "/assets/img/portfolio/general/STI_3.jpg" },
-  { id: 95, title: "STI Creative", category: "Branding", img: "/assets/img/portfolio/general/STI_4.jpg" },
-  { id: 96, title: "Satnam Campaign", category: "Branding", img: "/assets/img/portfolio/general/Satnam_1.jpg" },
-  { id: 97, title: "The Promise Branding", category: "Branding", img: "/assets/img/portfolio/general/The_Promise_1.jpg" },
-  { id: 98, title: "The Promise Display", category: "Branding", img: "/assets/img/portfolio/general/The_Promise_2.jpg" },
-  { id: 99, title: "The Promise Creative", category: "Branding", img: "/assets/img/portfolio/general/The_Promise_3.jpg" },
-  { id: 100, title: "Topwide Campaign", category: "Branding", img: "/assets/img/portfolio/general/Topwide1.jpg" },
-  { id: 101, title: "Topwide Branding", category: "Branding", img: "/assets/img/portfolio/general/Topwide_2.jpg" },
-  { id: 102, title: "Topwide Design", category: "Branding", img: "/assets/img/portfolio/general/Topwide_3.jpg" },
-  { id: 103, title: "X-Pression Campaign", category: "Branding", img: "/assets/img/portfolio/general/Xpression.jpg" },
+  { id: 71, title: "Enchanteur Campaign", category: "Creative", img: "/assets/img/portfolio/general/Enchanteur_1.jpg" },
+  { id: 72, title: "Enchanteur Display", category: "Creative", img: "/assets/img/portfolio/general/Enchanteur_2.jpg" },
+  { id: 73, title: "Enchanteur Promo", category: "Creative", img: "/assets/img/portfolio/general/Enchanteur_3.jpg" },
+  { id: 74, title: "Enchanteur Branding", category: "Creative", img: "/assets/img/portfolio/general/Enchanteur_4.jpg" },
+  { id: 75, title: "Enchanteur Creative", category: "Creative", img: "/assets/img/portfolio/general/Enchanteur_5.jpg" },
+  { id: 76, title: "Enchanteur Launch", category: "Creative", img: "/assets/img/portfolio/general/Enchanteur_6.jpg" },
+  { id: 77, title: "Enchanteur Design", category: "Creative", img: "/assets/img/portfolio/general/Enchanteur_7.jpg" },
+  { id: 78, title: "Enchanteur Activation", category: "Creative", img: "/assets/img/portfolio/general/Enchanteur_8.jpg" },
+  { id: 79, title: "Bio Oil Campaign", category: "Creative", img: "/assets/img/portfolio/general/Bio_Oil_1.jpg" },
+  { id: 80, title: "Bio Oil Display", category: "Creative", img: "/assets/img/portfolio/general/Bio_Oil_2.jpg" },
+  { id: 81, title: "Bio Oil Promo", category: "Creative", img: "/assets/img/portfolio/general/Bio_Oil_3.jpg" },
+  { id: 82, title: "Bio Oil Branding", category: "Creative", img: "/assets/img/portfolio/general/Bio_Oil_4.jpg" },
+  { id: 83, title: "NDL Campaign", category: "Creative", img: "/assets/img/portfolio/general/NDL1.jpg" },
+  { id: 84, title: "NDL Branding", category: "Creative", img: "/assets/img/portfolio/general/NDL2.jpg" },
+  { id: 85, title: "NDL Design", category: "Creative", img: "/assets/img/portfolio/general/NDL3.jpg" },
+  { id: 86, title: "NDL Display", category: "Creative", img: "/assets/img/portfolio/general/NDL4.jpg" },
+  { id: 87, title: "NDL Creative", category: "Creative", img: "/assets/img/portfolio/general/NDL5.jpg" },
+  { id: 88, title: "ORS Campaign", category: "Creative", img: "/assets/img/portfolio/general/ORS_1.jpg" },
+  { id: 89, title: "ORS Branding", category: "Creative", img: "/assets/img/portfolio/general/ORS_2.jpg" },
+  { id: 90, title: "ORS Display", category: "Creative", img: "/assets/img/portfolio/general/ORS_3.jpg" },
+  { id: 91, title: "ORS Promo", category: "Creative", img: "/assets/img/portfolio/general/ORS_4.jpg" },
+  { id: 92, title: "STI Campaign", category: "Creative", img: "/assets/img/portfolio/general/STI_1.jpg" },
+  { id: 93, title: "STI Branding", category: "Creative", img: "/assets/img/portfolio/general/STI_2.jpg" },
+  { id: 94, title: "STI Display", category: "Creative", img: "/assets/img/portfolio/general/STI_3.jpg" },
+  { id: 95, title: "STI Creative", category: "Creative", img: "/assets/img/portfolio/general/STI_4.jpg" },
+  { id: 96, title: "Satnam Campaign", category: "Creative", img: "/assets/img/portfolio/general/Satnam_1.jpg" },
+  { id: 97, title: "The Promise Branding", category: "Creative", img: "/assets/img/portfolio/general/The_Promise_1.jpg" },
+  { id: 98, title: "The Promise Display", category: "Creative", img: "/assets/img/portfolio/general/The_Promise_2.jpg" },
+  { id: 99, title: "The Promise Creative", category: "Creative", img: "/assets/img/portfolio/general/The_Promise_3.jpg" },
+  { id: 100, title: "Topwide Campaign", category: "Creative", img: "/assets/img/portfolio/general/Topwide1.jpg" },
+  { id: 101, title: "Topwide Branding", category: "Creative", img: "/assets/img/portfolio/general/Topwide_2.jpg" },
+  { id: 102, title: "Topwide Design", category: "Creative", img: "/assets/img/portfolio/general/Topwide_3.jpg" },
+  { id: 103, title: "X-Pression Campaign", category: "Creative", img: "/assets/img/portfolio/general/Xpression.jpg" },
 ];
 
 // Items for homepage (curated selection)
 const homepage_items = [1, 33, 71, 61, 79, 53, 88, 35, 83, 24, 92, 100];
 
-const categories = ["All", "Activation", "Outdoor", "Modern Trade", "Events", "Training", "Branding", "Videos", "Radio Jingles"];
+const categories = ["All", "Creative", "Outdoor", "Events", "Training", "Media", "Activation"];
 
 function PortfolioLightbox({ images, activeIndex, onClose }: { images: { img: string; title: string }[]; activeIndex: number; onClose: () => void }) {
   const [current, setCurrent] = useState(activeIndex);
@@ -364,8 +364,9 @@ export default function ProjectFive({ style_2 = false }: IProps) {
   const [activeCategory, setActiveCategory] = useState("All");
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
+  const categoryOrder = ["Creative", "Outdoor", "Events", "Training", "Media", "Activation"];
   const filteredItems = activeCategory === "All"
-    ? items
+    ? [...items].sort((a, b) => categoryOrder.indexOf(a.category) - categoryOrder.indexOf(b.category))
     : items.filter((item) => item.category === activeCategory);
 
   return (
@@ -404,9 +405,15 @@ export default function ProjectFive({ style_2 = false }: IProps) {
                   letterSpacing: "0.5px",
                 }}
               >
-                {cat} {cat !== "All" && cat !== "Videos" && cat !== "Radio Jingles" && <span style={{ opacity: 0.6, fontSize: "12px" }}>({project_data.filter(p => p.category === cat).length})</span>}
-                {cat === "Videos" && <span style={{ opacity: 0.6, fontSize: "12px" }}>({portfolio_videos.length})</span>}
-                {cat === "Radio Jingles" && <span style={{ opacity: 0.6, fontSize: "12px" }}>({portfolio_jingles.length})</span>}
+                {cat} {cat !== "All" && (
+                  <span style={{ opacity: 0.6, fontSize: "12px" }}>
+                    ({cat === "Media"
+                      ? portfolio_jingles.length
+                      : cat === "Activation"
+                        ? project_data.filter(p => p.category === "Activation").length + portfolio_videos.length
+                        : project_data.filter(p => p.category === cat).length})
+                  </span>
+                )}
               </button>
             ))}
           </div>
@@ -414,24 +421,10 @@ export default function ProjectFive({ style_2 = false }: IProps) {
 
         {style_2 ? (
           <>
-            {/* Videos section - show when "Videos" or "All" */}
-            {(activeCategory === "Videos" || activeCategory === "All") && (
-              <div style={{ marginBottom: activeCategory === "All" ? "60px" : "0" }}>
-                {activeCategory === "All" && <h3 style={{ fontSize: "24px", fontWeight: 700, marginBottom: "24px", color: "inherit" }}>Videos</h3>}
-                <div className="row" style={{ rowGap: "24px" }}>
-                  {portfolio_videos.map((vid, i) => (
-                    <div key={i} className="col-lg-4 col-md-6 col-12">
-                      <PortfolioVideoCard src={vid.src} title={vid.title} />
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Radio Jingles section - show when "Radio Jingles" or "All" */}
-            {(activeCategory === "Radio Jingles" || activeCategory === "All") && (
-              <div style={{ marginBottom: activeCategory === "All" ? "60px" : "0" }}>
-                {activeCategory === "All" && <h3 style={{ fontSize: "24px", fontWeight: 700, marginBottom: "24px", color: "inherit" }}>Radio Jingles</h3>}
+            {/* Media tab: Radio Jingles */}
+            {activeCategory === "Media" && (
+              <div>
+                <h3 style={{ fontSize: "24px", fontWeight: 700, marginBottom: "24px", color: "inherit" }}>Radio Jingles</h3>
                 <div className="row">
                   <div className="col-lg-8 col-12">
                     {portfolio_jingles.map((jingle, i) => (
@@ -442,10 +435,182 @@ export default function ProjectFive({ style_2 = false }: IProps) {
               </div>
             )}
 
-            {/* Image grid - show when not "Videos" or "Radio Jingles" */}
-            {activeCategory !== "Videos" && activeCategory !== "Radio Jingles" && (
+            {/* Activation tab: images + videos */}
+            {activeCategory === "Activation" && (
               <div>
-                {activeCategory === "All" && <h3 style={{ fontSize: "24px", fontWeight: 700, marginBottom: "24px", color: "inherit" }}>Projects</h3>}
+                {/* Activation Videos */}
+                <h3 style={{ fontSize: "24px", fontWeight: 700, marginBottom: "24px", color: "inherit" }}>Activation Videos</h3>
+                <div className="row" style={{ rowGap: "24px", marginBottom: "50px" }}>
+                  {portfolio_videos.map((vid, i) => (
+                    <div key={i} className="col-lg-4 col-md-6 col-12">
+                      <PortfolioVideoCard src={vid.src} title={vid.title} />
+                    </div>
+                  ))}
+                </div>
+                {/* Activation images */}
+                <div className="row" style={{ rowGap: "24px" }}>
+                  {filteredItems.map((item, idx) => (
+                    <div key={item.id} className="col-xl-4 col-lg-4 col-md-6">
+                      <div
+                        onClick={() => setLightboxIndex(idx)}
+                        style={{
+                          overflow: "hidden",
+                          borderRadius: "12px",
+                          position: "relative",
+                          cursor: "pointer",
+                        }}
+                      >
+                        <Image
+                          src={item.img}
+                          alt={item.title}
+                          width={800}
+                          height={600}
+                          style={{ height: "280px", width: "100%", objectFit: "cover", display: "block", transition: "transform 0.4s ease" }}
+                        />
+                        <div style={{
+                          position: "absolute",
+                          bottom: 0,
+                          left: 0,
+                          right: 0,
+                          padding: "20px",
+                          background: "linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%)",
+                        }}>
+                          <span style={{ fontSize: "12px", textTransform: "uppercase", letterSpacing: "1px", color: "rgba(255,255,255,0.7)" }}>{item.category}</span>
+                          <h4 style={{ fontSize: "16px", fontWeight: 600, color: "#fff", margin: "4px 0 0" }}>{item.title}</h4>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* All tab: show grouped by category in pill order */}
+            {activeCategory === "All" && (() => {
+              const categoryOrder = ["Creative", "Outdoor", "Events", "Training", "Media", "Activation"];
+              let runningIndex = 0;
+              return (
+                <>
+                  {categoryOrder.map((cat) => {
+                    const catItems = items.filter((item) => item.category === cat);
+                    const startIdx = runningIndex;
+                    runningIndex += catItems.length;
+
+                    if (cat === "Media") {
+                      return (
+                        <div key={cat} style={{ marginBottom: "60px" }}>
+                          <h3 style={{ fontSize: "24px", fontWeight: 700, marginBottom: "24px", color: "inherit" }}>Media</h3>
+                          <div className="row">
+                            <div className="col-lg-8 col-12">
+                              {portfolio_jingles.map((jingle, i) => (
+                                <JinglePlayer key={i} audio={jingle} index={i} />
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    }
+
+                    if (cat === "Activation") {
+                      return (
+                        <div key={cat} style={{ marginBottom: "60px" }}>
+                          <h3 style={{ fontSize: "24px", fontWeight: 700, marginBottom: "24px", color: "inherit" }}>Activation</h3>
+                          {/* Videos first */}
+                          <div className="row" style={{ rowGap: "24px", marginBottom: "40px" }}>
+                            {portfolio_videos.map((vid, i) => (
+                              <div key={i} className="col-lg-4 col-md-6 col-12">
+                                <PortfolioVideoCard src={vid.src} title={vid.title} />
+                              </div>
+                            ))}
+                          </div>
+                          {/* Then images */}
+                          <div className="row" style={{ rowGap: "24px" }}>
+                            {catItems.map((item, idx) => (
+                              <div key={item.id} className="col-xl-4 col-lg-4 col-md-6">
+                                <div
+                                  onClick={() => setLightboxIndex(startIdx + idx)}
+                                  style={{
+                                    overflow: "hidden",
+                                    borderRadius: "12px",
+                                    position: "relative",
+                                    cursor: "pointer",
+                                  }}
+                                >
+                                  <Image
+                                    src={item.img}
+                                    alt={item.title}
+                                    width={800}
+                                    height={600}
+                                    style={{ height: "280px", width: "100%", objectFit: "cover", display: "block", transition: "transform 0.4s ease" }}
+                                  />
+                                  <div style={{
+                                    position: "absolute",
+                                    bottom: 0,
+                                    left: 0,
+                                    right: 0,
+                                    padding: "20px",
+                                    background: "linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%)",
+                                  }}>
+                                    <span style={{ fontSize: "12px", textTransform: "uppercase", letterSpacing: "1px", color: "rgba(255,255,255,0.7)" }}>{item.category}</span>
+                                    <h4 style={{ fontSize: "16px", fontWeight: 600, color: "#fff", margin: "4px 0 0" }}>{item.title}</h4>
+                                  </div>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      );
+                    }
+
+                    if (catItems.length === 0) return null;
+
+                    return (
+                      <div key={cat} style={{ marginBottom: "60px" }}>
+                        <h3 style={{ fontSize: "24px", fontWeight: 700, marginBottom: "24px", color: "inherit" }}>{cat}</h3>
+                        <div className="row" style={{ rowGap: "24px" }}>
+                          {catItems.map((item, idx) => (
+                            <div key={item.id} className="col-xl-4 col-lg-4 col-md-6">
+                              <div
+                                onClick={() => setLightboxIndex(startIdx + idx)}
+                                style={{
+                                  overflow: "hidden",
+                                  borderRadius: "12px",
+                                  position: "relative",
+                                  cursor: "pointer",
+                                }}
+                              >
+                                <Image
+                                  src={item.img}
+                                  alt={item.title}
+                                  width={800}
+                                  height={600}
+                                  style={{ height: "280px", width: "100%", objectFit: "cover", display: "block", transition: "transform 0.4s ease" }}
+                                />
+                                <div style={{
+                                  position: "absolute",
+                                  bottom: 0,
+                                  left: 0,
+                                  right: 0,
+                                  padding: "20px",
+                                  background: "linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%)",
+                                }}>
+                                  <span style={{ fontSize: "12px", textTransform: "uppercase", letterSpacing: "1px", color: "rgba(255,255,255,0.7)" }}>{item.category}</span>
+                                  <h4 style={{ fontSize: "16px", fontWeight: 600, color: "#fff", margin: "4px 0 0" }}>{item.title}</h4>
+                                </div>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </>
+              );
+            })()}
+
+            {/* Other category tabs (Creative, Outdoor, Events, Training): just image grid */}
+            {activeCategory !== "All" && activeCategory !== "Activation" && activeCategory !== "Media" && (
+              <div>
                 <div className="row" style={{ rowGap: "24px" }}>
                   {filteredItems.map((item, idx) => (
                     <div key={item.id} className="col-xl-4 col-lg-4 col-md-6">
@@ -541,7 +706,7 @@ export default function ProjectFive({ style_2 = false }: IProps) {
       </div>
 
       {/* Lightbox */}
-      {lightboxIndex !== null && activeCategory !== "Videos" && activeCategory !== "Radio Jingles" && (
+      {lightboxIndex !== null && activeCategory !== "Media" && (
         <PortfolioLightbox
           images={filteredItems}
           activeIndex={lightboxIndex}
