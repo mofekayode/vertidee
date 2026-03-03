@@ -31,14 +31,6 @@ yarn-error.log*
 # vercel
 .vercel
 
-# large media files
-*.mp4
-*.MP4
-*.mpeg
-*.webm
-*.mov
-public/assets/img/portfolio/
-public/assets/video/
 /data/
 PROGRESS.md
 
