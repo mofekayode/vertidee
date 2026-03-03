@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import fs from 'fs';
-import path from 'path';
+import { put } from '@vercel/blob';
 
 export async function POST(request: NextRequest) {
   const auth = request.headers.get('authorization');
@@ -15,22 +14,10 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'No file provided' }, { status: 400 });
   }
 
-  const bytes = await file.arrayBuffer();
-  const buffer = Buffer.from(bytes);
+  const blob = await put(`team/${file.name}`, file, {
+    access: 'public',
+    addRandomSuffix: true,
+  });
 
-  // Generate unique filename
-  const ext = path.extname(file.name) || '.jpg';
-  const filename = `team-${Date.now()}${ext}`;
-  const uploadDir = path.join(process.cwd(), 'public', 'assets', 'img', 'team');
-
-  // Ensure directory exists
-  if (!fs.existsSync(uploadDir)) {
-    fs.mkdirSync(uploadDir, { recursive: true });
-  }
-
-  const filepath = path.join(uploadDir, filename);
-  fs.writeFileSync(filepath, buffer);
-
-  const publicUrl = `/assets/img/team/${filename}`;
-  return NextResponse.json({ url: publicUrl });
+  return NextResponse.json({ url: blob.url });
 }

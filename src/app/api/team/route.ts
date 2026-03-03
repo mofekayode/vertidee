@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getTeamMembers, createTeamMember } from '@/lib/team-store';
 
 export async function GET() {
-  const members = getTeamMembers();
+  const members = await getTeamMembers();
   return NextResponse.json(members);
 }
 
@@ -19,7 +19,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Name and designation are required' }, { status: 400 });
   }
 
-  const member = createTeamMember({
+  const member = await createTeamMember({
     name,
     designation,
     description: description || '',

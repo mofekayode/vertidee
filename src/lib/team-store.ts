@@ -1,5 +1,9 @@
-import fs from 'fs';
-import path from 'path';
+import { Redis } from '@upstash/redis';
+
+const redis = new Redis({
+  url: process.env.KV_REST_API_URL!,
+  token: process.env.KV_REST_API_TOKEN!,
+});
 
 export interface TeamMember {
   id: string;
@@ -12,31 +16,20 @@ export interface TeamMember {
   updatedAt: string;
 }
 
-const DATA_FILE = path.join(process.cwd(), 'data', 'team.json');
+const KV_KEY = 'team:members';
 
-function ensureDataFile() {
-  const dir = path.dirname(DATA_FILE);
-  if (!fs.existsSync(dir)) {
-    fs.mkdirSync(dir, { recursive: true });
-  }
-  if (!fs.existsSync(DATA_FILE)) {
-    fs.writeFileSync(DATA_FILE, '[]', 'utf-8');
-  }
+export async function getTeamMembers(): Promise<TeamMember[]> {
+  const members = await redis.get<TeamMember[]>(KV_KEY);
+  return members ?? [];
 }
 
-export function getTeamMembers(): TeamMember[] {
-  ensureDataFile();
-  const data = fs.readFileSync(DATA_FILE, 'utf-8');
-  return JSON.parse(data);
-}
-
-export function getTeamMember(id: string): TeamMember | undefined {
-  const members = getTeamMembers();
+export async function getTeamMember(id: string): Promise<TeamMember | undefined> {
+  const members = await getTeamMembers();
   return members.find(m => m.id === id);
 }
 
-export function createTeamMember(member: Omit<TeamMember, 'id' | 'createdAt' | 'updatedAt'>): TeamMember {
-  const members = getTeamMembers();
+export async function createTeamMember(member: Omit<TeamMember, 'id' | 'createdAt' | 'updatedAt'>): Promise<TeamMember> {
+  const members = await getTeamMembers();
   const newMember: TeamMember = {
     ...member,
     id: Date.now().toString(),
@@ -44,12 +37,12 @@ export function createTeamMember(member: Omit<TeamMember, 'id' | 'createdAt' | '
     updatedAt: new Date().toISOString(),
   };
   members.push(newMember);
-  fs.writeFileSync(DATA_FILE, JSON.stringify(members, null, 2), 'utf-8');
+  await redis.set(KV_KEY, members);
   return newMember;
 }
 
-export function updateTeamMember(id: string, updates: Partial<Omit<TeamMember, 'id' | 'createdAt'>>): TeamMember | null {
-  const members = getTeamMembers();
+export async function updateTeamMember(id: string, updates: Partial<Omit<TeamMember, 'id' | 'createdAt'>>): Promise<TeamMember | null> {
+  const members = await getTeamMembers();
   const index = members.findIndex(m => m.id === id);
   if (index === -1) return null;
 
@@ -58,14 +51,14 @@ export function updateTeamMember(id: string, updates: Partial<Omit<TeamMember, '
     ...updates,
     updatedAt: new Date().toISOString(),
   };
-  fs.writeFileSync(DATA_FILE, JSON.stringify(members, null, 2), 'utf-8');
+  await redis.set(KV_KEY, members);
   return members[index];
 }
 
-export function deleteTeamMember(id: string): boolean {
-  const members = getTeamMembers();
+export async function deleteTeamMember(id: string): Promise<boolean> {
+  const members = await getTeamMembers();
   const filtered = members.filter(m => m.id !== id);
   if (filtered.length === members.length) return false;
-  fs.writeFileSync(DATA_FILE, JSON.stringify(filtered, null, 2), 'utf-8');
+  await redis.set(KV_KEY, filtered);
   return true;
 }

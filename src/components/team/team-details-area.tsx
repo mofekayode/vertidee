@@ -1,17 +1,31 @@
-import React from "react";
+"use client";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 
 // images
 import shape_1 from "@/assets/img/home-01/team/team-details-shape-1.png";
 import shape_2 from "@/assets/img/home-01/team/team-details-shape-2.png";
-import t_details from "@/assets/img/home-01/team/team-details-1.png";
 import { IdProps } from "@/types/custom-d-t";
-import team_data from "@/data/team-data";
 import Link from "next/link";
 
+interface MemberData {
+  id: string;
+  name: string;
+  designation: string;
+  description: string;
+  image: string;
+}
+
 export default function TeamDetailsArea({ id }: IdProps) {
-// Find the team that matches the given ID
-    const item = team_data.find((team) => team.id == id);
+  const [item, setItem] = useState<MemberData | null>(null);
+
+  useEffect(() => {
+    fetch(`/api/team/${id}`)
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => setItem(data));
+  }, [id]);
+
+  if (!item) return null;
 
   return (
     <div className="tm-details-wrapper p-relative">
@@ -26,36 +40,21 @@ export default function TeamDetailsArea({ id }: IdProps) {
           <div className="col-xl-6 col-lg-6 col-md-7">
             <div className="tm-details-content-wrap z-index-5">
               <div className="tm-details-title-box mb-20">
-                <span className="tm-hero-subtitle">{item?.designation}</span>
-                <h4 className="tm-details-title">{item?.name}</h4>
+                <span className="tm-hero-subtitle">{item.designation}</span>
+                <h4 className="tm-details-title">{item.name}</h4>
               </div>
               <div className="tm-details-text">
-                <p>
-                  {"I'm"} an illustrator, working for brands. My work is fuelled
-                  by my observing nature and ongoing curiosity, utilizing simple
-                  shapes to tell all sorts of stories. My clear signature
-                  applies to both my personal work as well as my commercial
-                  commissions. Among my clients are Google, The New York Times,
-                  The New Yorker, Facebook, Vogue, TED and Twitter. Oh and I
-                  like to paint. Which still feels very new to me and slows me
-                  down.
-                </p>
-              </div>
-              <div className="tm-details-portfolio mb-50">
-                <span className="tm-details-social-title">Portfolio:</span>
-                <Link href="#">Behance</Link>
-                <Link href="#">Dribbble</Link>
-                <Link href="#">Meduim</Link>
+                <p>{item.description}</p>
               </div>
               <div className="tm-details-social">
                 <span className="tm-details-social-title">Follow:</span>
-                <Link href="#">
+                <Link href="https://facebook.com/vertidee" target="_blank">
                   <i className="fab fa-facebook-f"></i>
                 </Link>
-                <Link href="#">
+                <Link href="https://twitter.com/vertidee" target="_blank">
                   <i className="fab fa-twitter"></i>
                 </Link>
-                <Link href="#">
+                <Link href="https://linkedin.com/company/vertidee" target="_blank">
                   <i className="fab fa-linkedin-in"></i>
                 </Link>
               </div>
@@ -63,7 +62,13 @@ export default function TeamDetailsArea({ id }: IdProps) {
           </div>
           <div className="col-xl-6 col-lg-6 col-md-5">
             <div className="tm-details-thumb">
-              <Image src={t_details} alt="team-details-img" style={{height:"auto"}} />
+              <Image
+                src={item.image}
+                alt={item.name}
+                width={500}
+                height={600}
+                style={{ height: "auto", width: "100%", objectFit: "cover", borderRadius: "12px" }}
+              />
             </div>
           </div>
         </div>

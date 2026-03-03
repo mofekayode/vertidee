@@ -28,8 +28,10 @@ export default function AdminPage() {
     designation: "",
     description: "",
     image: "",
-    order: 999,
+    order: 0,
   });
+
+  const nextOrder = members.length > 0 ? Math.max(...members.map(m => m.order)) + 1 : 1;
 
   const fetchMembers = useCallback(async () => {
     const res = await fetch("/api/team");
@@ -55,7 +57,7 @@ export default function AdminPage() {
   }
 
   function resetForm() {
-    setFormData({ name: "", designation: "", description: "", image: "", order: 999 });
+    setFormData({ name: "", designation: "", description: "", image: "", order: nextOrder });
     setEditingMember(null);
     setShowForm(false);
   }
@@ -164,7 +166,10 @@ export default function AdminPage() {
     <div style={styles.container}>
       <header style={styles.header}>
         <div style={styles.headerInner}>
-          <h1 style={styles.headerTitle}>Vert Idee Admin</h1>
+          <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
+            <a href="/" style={{ color: "#fff", textDecoration: "none", fontSize: "20px", lineHeight: 1 }} title="Back to Home">&larr;</a>
+            <h1 style={styles.headerTitle}>Vert Idee Admin</h1>
+          </div>
           <button onClick={() => { setIsAuthenticated(false); setPassword(""); }} style={styles.logoutBtn}>
             Logout
           </button>
@@ -175,7 +180,7 @@ export default function AdminPage() {
         <div style={styles.topBar}>
           <h2 style={styles.sectionTitle}>Team Members ({members.length})</h2>
           <button
-            onClick={() => { resetForm(); setShowForm(true); }}
+            onClick={() => { resetForm(); setFormData(prev => ({ ...prev, order: nextOrder })); setShowForm(true); }}
             style={styles.primaryBtn}
           >
             + Add Team Member
@@ -222,7 +227,7 @@ export default function AdminPage() {
                   <input
                     type="number"
                     value={formData.order}
-                    onChange={(e) => setFormData({ ...formData, order: parseInt(e.target.value) || 999 })}
+                    onChange={(e) => setFormData({ ...formData, order: parseInt(e.target.value) || nextOrder })}
                     style={styles.input}
                   />
                 </div>
@@ -363,6 +368,7 @@ const styles: Record<string, React.CSSProperties> = {
   headerTitle: {
     fontSize: "20px",
     fontWeight: 700,
+    color: "#ffffff",
   },
   logoutBtn: {
     background: "transparent",

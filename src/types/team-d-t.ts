@@ -1,5 +1,5 @@
 export interface ITeamDT {
-  id: number;
+  id: number | string;
   image: string;
   designation: string;
   name: string;
