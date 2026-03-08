@@ -30,12 +30,6 @@ const data = {
     "/assets/img/portfolio/general/Topwide1.jpg",
     "/assets/img/portfolio/general/Topwide_2.jpg",
     "/assets/img/portfolio/general/Topwide_3.jpg",
-    "/assets/img/portfolio/event-management/1.jpg",
-    "/assets/img/portfolio/event-management/2.jpg",
-    "/assets/img/portfolio/event-management/3.jpg",
-    "/assets/img/portfolio/event-management/4.jpg",
-    "/assets/img/portfolio/event-management/5.jpg",
-    "/assets/img/portfolio/event-management/6.jpg",
   ],
 };
 

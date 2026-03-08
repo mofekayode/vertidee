@@ -66,18 +66,6 @@ const ServiceOne = () => {
                   key={s.id}
                   className="tp-service-item d-flex align-items-start mb-75 tp_fade_bottom"
                 >
-                  <div className="tp-service-icon">
-                    <span style={{
-                      fontSize: "32px",
-                      fontWeight: 700,
-                      fontFamily: "var(--tp-ff-heading)",
-                      opacity: 0.15,
-                      display: "block",
-                      minWidth: "60px",
-                    }}>
-                      {s.num}
-                    </span>
-                  </div>
                   <div className="tp-service-content">
                     <h4 className="tp-service-title-sm order-0">
                       <Link href={s.link} style={{ color: "#61A706" }}>{s.title}</Link>

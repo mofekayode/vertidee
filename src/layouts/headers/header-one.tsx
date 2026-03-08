@@ -41,7 +41,7 @@ const HeaderOne = () => {
                   </Link>
                 </div>
               </div>
-              <div className="col-xl-8 col-lg-9 d-none d-xl-block">
+              <div className="col-xl-8 col-lg-9 d-none d-lg-block">
                 <div className="tp-header-menu header-main-menu text-center">
                   <nav className="tp-main-menu-content">
                     <HeaderMenus />

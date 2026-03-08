@@ -760,33 +760,32 @@
     }
 }
 .sv-big-text{
-    font-size: 199px;
+    font-size: 100px;
     font-weight: 700;
     line-height: .9;
-    letter-spacing: -12px;
+    letter-spacing: -6px;
     text-transform: uppercase;
     color: var(--tp-common-black-2);
     white-space: nowrap;
     margin-bottom: 0;
-    transform: translateX(-12px);
     @media #{$xxl}{
-        font-size: 182px;
+        font-size: 90px;
     }
     @media #{$xl}{
-        font-size: 151px;
+        font-size: 80px;
     }
     @media #{$lg}{
-        font-size: 129px;
+        font-size: 65px;
     }
     @media #{$md}{
-        font-size: 101px;
+        font-size: 50px;
     }
     @media #{$xs}{
-        font-size: 84px;
+        font-size: 40px;
         white-space: break-spaces;
     }
     @media #{$sm}{
-        font-size: 80px;
+        font-size: 40px;
         white-space: nowrap;
     }
 }

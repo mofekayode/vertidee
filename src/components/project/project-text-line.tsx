@@ -30,38 +30,30 @@ const ProjectTextLine = () => {
       className="tp-project-textline tp-project-effect mb-115"
       data-scrub="0.0001"
     >
-      <span className="textline-1">
-        Our
-        <span>
-          <Image src={shape} alt="shape" />
-        </span>
-        Work
+      <span className="textline-1">Our</span>
+      <span className="textline-2">Work</span>
+      <span className="textline-1">Portfolio</span>
+      <span className="textline-2">
+        <span><Image src={shape} alt="shape" /></span>
       </span>
-      <span className="textline-2">Portfolio</span>
-      <span className="textline-1">
-        Our
-        <span>
-          <Image src={shape} alt="shape" />
-        </span>
-        Work
+      <span className="textline-1">Our</span>
+      <span className="textline-2">Work</span>
+      <span className="textline-1">Portfolio</span>
+      <span className="textline-2">
+        <span><Image src={shape} alt="shape" /></span>
       </span>
-      <span className="textline-2">Portfolio</span>
-      <span className="textline-1">
-        Our
-        <span>
-          <Image src={shape} alt="shape" />
-        </span>
-        Work
+      <span className="textline-1">Our</span>
+      <span className="textline-2">Work</span>
+      <span className="textline-1">Portfolio</span>
+      <span className="textline-2">
+        <span><Image src={shape} alt="shape" /></span>
       </span>
-      <span className="textline-2">Portfolio</span>
-      <span className="textline-1">
-        Our
-        <span>
-          <Image src={shape} alt="shape" />
-        </span>
-        Work
+      <span className="textline-1">Our</span>
+      <span className="textline-2">Work</span>
+      <span className="textline-1">Portfolio</span>
+      <span className="textline-2">
+        <span><Image src={shape} alt="shape" /></span>
       </span>
-      <span className="textline-2">Portfolio</span>
     </div>
   );
 };

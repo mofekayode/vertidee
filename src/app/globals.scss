@@ -167,17 +167,122 @@ a:hover {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-top: clamp(80px, 12vh, 200px) !important;
-  padding-bottom: 20px;
+  padding-top: clamp(100px, 15vh, 200px) !important;
+  padding-bottom: 40px;
   box-sizing: border-box;
 }
 
+/* Shrink hero title to fit inside the egg shape */
 .tp-hero-area .tp-hero-title {
-  font-size: clamp(70px, min(15vw, 20vh), 220px) !important;
+  font-size: clamp(48px, 9.5vw, 155px) !important;
+  line-height: 1.05 !important;
 }
 
 .tp-hero-area .tp-hero-content {
   margin-bottom: clamp(30px, 6vh, 120px) !important;
+}
+
+/* Hero subtitle - adjust position for smaller title */
+.tp-hero-subtitle {
+  top: 20px !important;
+  font-size: clamp(14px, 1.2vw, 18px) !important;
+  line-height: 1.4 !important;
+}
+
+/* Egg shape behind title text only */
+.tp-hero-shape-1 {
+  z-index: -1 !important;
+  top: -12% !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+}
+.tp-hero-shape-1 img {
+  width: auto !important;
+  height: auto !important;
+}
+
+/* Align "partnering" text to start where "Agency" starts */
+.tp-hero-content {
+  text-align: left !important;
+  max-width: 700px !important;
+  margin-left: 50% !important;
+  margin-right: 0 !important;
+  position: relative;
+  z-index: 2;
+  padding-left: 0 !important;
+  transform: translateX(-50%);
+}
+
+/* Ensure description is below the egg shape */
+.tp-hero-title-wrap {
+  margin-bottom: 130px !important;
+}
+
+/* Responsive hero adjustments */
+@media (max-width: 1199px) {
+  .tp-hero-area .tp-hero-title {
+    font-size: clamp(48px, 10vw, 120px) !important;
+  }
+}
+
+@media (max-width: 991px) {
+  .tp-hero-area .tp-hero-title {
+    font-size: clamp(48px, 10vw, 100px) !important;
+  }
+  .tp-hero-content {
+    text-align: center !important;
+    transform: none !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+  .tp-hero-shape-1 img {
+    transform: scale(1.2) !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .tp-hero-area.tp-hero-ptb {
+    padding-top: 130px !important;
+    min-height: auto !important;
+  }
+  .tp-hero-area .tp-hero-title {
+    font-size: clamp(52px, 14vw, 80px) !important;
+  }
+  .tp-hero-content {
+    text-align: center !important;
+    transform: none !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+  .tp-hero-title-wrap {
+    margin-bottom: 20px !important;
+  }
+  .tp-hero-shape-1 {
+    top: -5% !important;
+  }
+  .tp-hero-shape-1 img {
+    transform: scale(1.25) !important;
+  }
+}
+
+/* Project textline badge spacing */
+.tp-project-textline span img {
+  margin: 0 10px !important;
+  vertical-align: middle !important;
+}
+.tp-project-textline span.textline-1,
+.tp-project-textline span.textline-2 {
+  margin-right: 20px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+}
+
+/* Reduce space before "View all projects" button */
+.tp-project-gallery-top {
+  padding-bottom: 0 !important;
+}
+.tp-project-btn {
+  margin-bottom: 40px !important;
 }
 
 /* Team horizontal scroll - hide scrollbar */

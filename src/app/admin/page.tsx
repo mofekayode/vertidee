@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
+import portfolio_data from "@/data/portfolio-data";
 
 interface TeamMember {
   id: string;
@@ -11,19 +12,37 @@ interface TeamMember {
   order: number;
 }
 
+interface PortfolioItem {
+  id: string;
+  title: string;
+  category: string;
+  img: string;
+  order: number;
+}
+
 const ADMIN_PASSWORD = "vertidee-admin-2026";
 
+const PORTFOLIO_CATEGORIES = [
+  "Experiential Marketing",
+  "Outdoor",
+  "Events",
+  "Training",
+  "Creative",
+];
+
 export default function AdminPage() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(true);
   const [password, setPassword] = useState("");
-  const [authToken, setAuthToken] = useState("");
-  const [members, setMembers] = useState<TeamMember[]>([]);
-  const [editingMember, setEditingMember] = useState<TeamMember | null>(null);
-  const [showForm, setShowForm] = useState(false);
-  const [uploading, setUploading] = useState(false);
+  const [authToken, setAuthToken] = useState(ADMIN_PASSWORD);
+  const [activeTab, setActiveTab] = useState<"team" | "portfolio">("team");
   const [message, setMessage] = useState("");
 
-  const [formData, setFormData] = useState({
+  // Team state
+  const [members, setMembers] = useState<TeamMember[]>([]);
+  const [editingMember, setEditingMember] = useState<TeamMember | null>(null);
+  const [showTeamForm, setShowTeamForm] = useState(false);
+  const [teamUploading, setTeamUploading] = useState(false);
+  const [teamFormData, setTeamFormData] = useState({
     name: "",
     designation: "",
     description: "",
@@ -31,7 +50,20 @@ export default function AdminPage() {
     order: 0,
   });
 
-  const nextOrder = members.length > 0 ? Math.max(...members.map(m => m.order)) + 1 : 1;
+  // Portfolio state
+  const [portfolioItems, setPortfolioItems] = useState<PortfolioItem[]>([]);
+  const [editingPortfolio, setEditingPortfolio] = useState<PortfolioItem | null>(null);
+  const [showPortfolioForm, setShowPortfolioForm] = useState(false);
+  const [portfolioUploading, setPortfolioUploading] = useState(false);
+  const [portfolioFormData, setPortfolioFormData] = useState({
+    title: "",
+    category: PORTFOLIO_CATEGORIES[0],
+    img: "",
+    order: 0,
+  });
+
+  const nextTeamOrder = members.length > 0 ? Math.max(...members.map(m => m.order)) + 1 : 1;
+  const nextPortfolioOrder = portfolioItems.length > 0 ? Math.max(...portfolioItems.map(p => p.order)) + 1 : 1;
 
   const fetchMembers = useCallback(async () => {
     const res = await fetch("/api/team");
@@ -39,11 +71,18 @@ export default function AdminPage() {
     setMembers(data.sort((a: TeamMember, b: TeamMember) => a.order - b.order));
   }, []);
 
+  const fetchPortfolio = useCallback(async () => {
+    const res = await fetch("/api/portfolio");
+    const data = await res.json();
+    setPortfolioItems(data.sort((a: PortfolioItem, b: PortfolioItem) => a.order - b.order));
+  }, []);
+
   useEffect(() => {
     if (isAuthenticated) {
       fetchMembers();
+      fetchPortfolio();
     }
-  }, [isAuthenticated, fetchMembers]);
+  }, [isAuthenticated, fetchMembers, fetchPortfolio]);
 
   function handleLogin(e: React.FormEvent) {
     e.preventDefault();
@@ -56,65 +95,61 @@ export default function AdminPage() {
     }
   }
 
-  function resetForm() {
-    setFormData({ name: "", designation: "", description: "", image: "", order: nextOrder });
+  // --- Team handlers ---
+  function resetTeamForm() {
+    setTeamFormData({ name: "", designation: "", description: "", image: "", order: nextTeamOrder });
     setEditingMember(null);
-    setShowForm(false);
+    setShowTeamForm(false);
   }
 
-  function handleEdit(member: TeamMember) {
+  function handleEditTeam(member: TeamMember) {
     setEditingMember(member);
-    setFormData({
+    setTeamFormData({
       name: member.name,
       designation: member.designation,
       description: member.description,
       image: member.image,
       order: member.order,
     });
-    setShowForm(true);
+    setShowTeamForm(true);
   }
 
-  async function handleImageUpload(e: React.ChangeEvent<HTMLInputElement>) {
+  async function handleTeamImageUpload(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
     if (!file) return;
-
-    setUploading(true);
+    setTeamUploading(true);
     const fd = new FormData();
     fd.append("file", file);
-
+    fd.append("folder", "team");
     const res = await fetch("/api/upload", {
       method: "POST",
       headers: { Authorization: `Bearer ${authToken}` },
       body: fd,
     });
-
     if (res.ok) {
       const data = await res.json();
-      setFormData((prev) => ({ ...prev, image: data.url }));
+      setTeamFormData((prev) => ({ ...prev, image: data.url }));
     } else {
       setMessage("Upload failed");
     }
-    setUploading(false);
+    setTeamUploading(false);
   }
 
-  async function handleSubmit(e: React.FormEvent) {
+  async function handleTeamSubmit(e: React.FormEvent) {
     e.preventDefault();
-
     const url = editingMember ? `/api/team/${editingMember.id}` : "/api/team";
     const method = editingMember ? "PUT" : "POST";
-
     const res = await fetch(url, {
       method,
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${authToken}`,
       },
-      body: JSON.stringify(formData),
+      body: JSON.stringify(teamFormData),
     });
-
     if (res.ok) {
       setMessage(editingMember ? "Team member updated!" : "Team member added!");
-      resetForm();
+      resetTeamForm();
       fetchMembers();
     } else {
       const err = await res.json();
@@ -122,17 +157,109 @@ export default function AdminPage() {
     }
   }
 
-  async function handleDelete(id: string) {
+  async function handleDeleteTeam(id: string) {
     if (!confirm("Are you sure you want to remove this team member?")) return;
-
     const res = await fetch(`/api/team/${id}`, {
       method: "DELETE",
       headers: { Authorization: `Bearer ${authToken}` },
     });
-
     if (res.ok) {
       setMessage("Team member removed");
       fetchMembers();
+    }
+  }
+
+  // --- Portfolio handlers ---
+  function resetPortfolioForm() {
+    setPortfolioFormData({ title: "", category: PORTFOLIO_CATEGORIES[0], img: "", order: nextPortfolioOrder });
+    setEditingPortfolio(null);
+    setShowPortfolioForm(false);
+  }
+
+  function handleEditPortfolio(item: PortfolioItem) {
+    setEditingPortfolio(item);
+    setPortfolioFormData({
+      title: item.title,
+      category: item.category,
+      img: item.img,
+      order: item.order,
+    });
+    setShowPortfolioForm(true);
+  }
+
+  async function handlePortfolioImageUpload(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setPortfolioUploading(true);
+    const fd = new FormData();
+    fd.append("file", file);
+    fd.append("folder", "portfolio");
+    const res = await fetch("/api/upload", {
+      method: "POST",
+      headers: { Authorization: `Bearer ${authToken}` },
+      body: fd,
+    });
+    if (res.ok) {
+      const data = await res.json();
+      setPortfolioFormData((prev) => ({ ...prev, img: data.url }));
+    } else {
+      setMessage("Upload failed");
+    }
+    setPortfolioUploading(false);
+  }
+
+  async function handlePortfolioSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    const url = editingPortfolio ? `/api/portfolio/${editingPortfolio.id}` : "/api/portfolio";
+    const method = editingPortfolio ? "PUT" : "POST";
+    const res = await fetch(url, {
+      method,
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${authToken}`,
+      },
+      body: JSON.stringify(portfolioFormData),
+    });
+    if (res.ok) {
+      setMessage(editingPortfolio ? "Portfolio item updated!" : "Portfolio item added!");
+      resetPortfolioForm();
+      fetchPortfolio();
+    } else {
+      const err = await res.json();
+      setMessage(err.error || "Something went wrong");
+    }
+  }
+
+  async function handleDeletePortfolio(id: string) {
+    if (!confirm("Are you sure you want to remove this portfolio item?")) return;
+    const res = await fetch(`/api/portfolio/${id}`, {
+      method: "DELETE",
+      headers: { Authorization: `Bearer ${authToken}` },
+    });
+    if (res.ok) {
+      setMessage("Portfolio item removed");
+      fetchPortfolio();
+    }
+  }
+
+  async function handleSeedPortfolio() {
+    if (!confirm("This will replace all portfolio items with the default data. Continue?")) return;
+    const res = await fetch("/api/portfolio", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${authToken}`,
+      },
+      body: JSON.stringify({
+        action: "seed",
+        items: portfolio_data,
+      }),
+    });
+    if (res.ok) {
+      setMessage("Portfolio seeded from defaults!");
+      fetchPortfolio();
+    } else {
+      setMessage("Seed failed");
     }
   }
 
@@ -142,7 +269,7 @@ export default function AdminPage() {
       <div style={styles.loginContainer}>
         <div style={styles.loginBox}>
           <h1 style={styles.loginTitle}>Vert Idee Admin</h1>
-          <p style={styles.loginSubtitle}>Team Management</p>
+          <p style={styles.loginSubtitle}>Content Management</p>
           <form onSubmit={handleLogin} style={{ display: "flex", gap: "12px", alignItems: "stretch" }}>
             <input
               type="password"
@@ -176,17 +303,25 @@ export default function AdminPage() {
         </div>
       </header>
 
-      <main style={styles.main}>
-        <div style={styles.topBar}>
-          <h2 style={styles.sectionTitle}>Team Members ({members.length})</h2>
+      {/* Tab bar */}
+      <div style={styles.tabBar}>
+        <div style={styles.tabBarInner}>
           <button
-            onClick={() => { resetForm(); setFormData(prev => ({ ...prev, order: nextOrder })); setShowForm(true); }}
-            style={styles.primaryBtn}
+            onClick={() => setActiveTab("team")}
+            style={activeTab === "team" ? styles.tabActive : styles.tab}
           >
-            + Add Team Member
+            Team
+          </button>
+          <button
+            onClick={() => setActiveTab("portfolio")}
+            style={activeTab === "portfolio" ? styles.tabActive : styles.tab}
+          >
+            Portfolio
           </button>
         </div>
+      </div>
 
+      <main style={styles.main}>
         {message && (
           <div style={styles.messageBar}>
             {message}
@@ -194,122 +329,260 @@ export default function AdminPage() {
           </div>
         )}
 
-        {/* Form */}
-        {showForm && (
-          <div style={styles.formCard}>
-            <h3 style={styles.formTitle}>
-              {editingMember ? "Edit Team Member" : "Add New Team Member"}
-            </h3>
-            <form onSubmit={handleSubmit}>
-              <div style={styles.formGrid}>
-                <div style={styles.formGroup}>
-                  <label style={styles.label}>Name *</label>
-                  <input
-                    type="text"
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    required
-                    style={styles.input}
-                  />
-                </div>
-                <div style={styles.formGroup}>
-                  <label style={styles.label}>Designation / Role *</label>
-                  <input
-                    type="text"
-                    value={formData.designation}
-                    onChange={(e) => setFormData({ ...formData, designation: e.target.value })}
-                    required
-                    style={styles.input}
-                  />
-                </div>
-                <div style={styles.formGroup}>
-                  <label style={styles.label}>Display Order</label>
-                  <input
-                    type="number"
-                    value={formData.order}
-                    onChange={(e) => setFormData({ ...formData, order: parseInt(e.target.value) || nextOrder })}
-                    style={styles.input}
-                  />
-                </div>
-                <div style={styles.formGroup}>
-                  <label style={styles.label}>Photo</label>
-                  <input
-                    type="file"
-                    accept="image/*"
-                    onChange={handleImageUpload}
-                    style={styles.input}
-                  />
-                  {uploading && <span style={{ fontSize: "13px", color: "#666" }}>Uploading...</span>}
-                  {formData.image && (
-                    <div style={{ marginTop: "8px" }}>
-                      <Image
-                        src={formData.image}
-                        alt="Preview"
-                        width={80}
-                        height={80}
-                        style={{ borderRadius: "8px", objectFit: "cover" }}
+        {/* ======================== TEAM TAB ======================== */}
+        {activeTab === "team" && (
+          <>
+            <div style={styles.topBar}>
+              <h2 style={styles.sectionTitle}>Team Members ({members.length})</h2>
+              <button
+                onClick={() => { resetTeamForm(); setTeamFormData(prev => ({ ...prev, order: nextTeamOrder })); setShowTeamForm(true); }}
+                style={styles.primaryBtn}
+              >
+                + Add Team Member
+              </button>
+            </div>
+
+            {showTeamForm && (
+              <div style={styles.formCard}>
+                <h3 style={styles.formTitle}>
+                  {editingMember ? "Edit Team Member" : "Add New Team Member"}
+                </h3>
+                <form onSubmit={handleTeamSubmit}>
+                  <div style={styles.formGrid}>
+                    <div style={styles.formGroup}>
+                      <label style={styles.label}>Name *</label>
+                      <input
+                        type="text"
+                        value={teamFormData.name}
+                        onChange={(e) => setTeamFormData({ ...teamFormData, name: e.target.value })}
+                        required
+                        style={styles.input}
                       />
                     </div>
-                  )}
+                    <div style={styles.formGroup}>
+                      <label style={styles.label}>Designation / Role *</label>
+                      <input
+                        type="text"
+                        value={teamFormData.designation}
+                        onChange={(e) => setTeamFormData({ ...teamFormData, designation: e.target.value })}
+                        required
+                        style={styles.input}
+                      />
+                    </div>
+                    <div style={styles.formGroup}>
+                      <label style={styles.label}>Display Order</label>
+                      <input
+                        type="number"
+                        value={teamFormData.order}
+                        onChange={(e) => setTeamFormData({ ...teamFormData, order: parseInt(e.target.value) || nextTeamOrder })}
+                        style={styles.input}
+                      />
+                    </div>
+                    <div style={styles.formGroup}>
+                      <label style={styles.label}>Photo</label>
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={handleTeamImageUpload}
+                        style={styles.input}
+                      />
+                      {teamUploading && <span style={{ fontSize: "13px", color: "#666" }}>Uploading...</span>}
+                      {teamFormData.image && (
+                        <div style={{ marginTop: "8px" }}>
+                          <Image
+                            src={teamFormData.image}
+                            alt="Preview"
+                            width={80}
+                            height={80}
+                            style={{ borderRadius: "8px", objectFit: "cover" }}
+                          />
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                  <div style={styles.formGroup}>
+                    <label style={styles.label}>Description / Bio</label>
+                    <textarea
+                      value={teamFormData.description}
+                      onChange={(e) => setTeamFormData({ ...teamFormData, description: e.target.value })}
+                      rows={3}
+                      style={{ ...styles.input, resize: "vertical" as const }}
+                    />
+                  </div>
+                  <div style={styles.formActions}>
+                    <button type="submit" style={styles.primaryBtn}>
+                      {editingMember ? "Update" : "Add"} Team Member
+                    </button>
+                    <button type="button" onClick={resetTeamForm} style={styles.secondaryBtn}>
+                      Cancel
+                    </button>
+                  </div>
+                </form>
+              </div>
+            )}
+
+            <div style={styles.grid}>
+              {members.map((member) => (
+                <div key={member.id} style={styles.card}>
+                  <div style={styles.cardImage}>
+                    {member.image ? (
+                      <Image
+                        src={member.image}
+                        alt={member.name}
+                        width={200}
+                        height={200}
+                        style={{ width: "100%", height: "200px", objectFit: "cover", borderRadius: "8px 8px 0 0" }}
+                      />
+                    ) : (
+                      <div style={styles.placeholder}>No Photo</div>
+                    )}
+                  </div>
+                  <div style={styles.cardBody}>
+                    <h4 style={styles.cardName}>{member.name}</h4>
+                    <p style={styles.cardRole}>{member.designation}</p>
+                    {member.description && (
+                      <p style={styles.cardDesc}>{member.description}</p>
+                    )}
+                    <p style={styles.cardOrder}>Order: {member.order}</p>
+                    <div style={styles.cardActions}>
+                      <button onClick={() => handleEditTeam(member)} style={styles.editBtn}>
+                        Edit
+                      </button>
+                      <button onClick={() => handleDeleteTeam(member.id)} style={styles.deleteBtn}>
+                        Delete
+                      </button>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div style={styles.formGroup}>
-                <label style={styles.label}>Description / Bio</label>
-                <textarea
-                  value={formData.description}
-                  onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                  rows={3}
-                  style={{ ...styles.input, resize: "vertical" as const }}
-                />
-              </div>
-              <div style={styles.formActions}>
-                <button type="submit" style={styles.primaryBtn}>
-                  {editingMember ? "Update" : "Add"} Team Member
-                </button>
-                <button type="button" onClick={resetForm} style={styles.secondaryBtn}>
-                  Cancel
-                </button>
-              </div>
-            </form>
-          </div>
+              ))}
+            </div>
+          </>
         )}
 
-        {/* Team Members List */}
-        <div style={styles.grid}>
-          {members.map((member) => (
-            <div key={member.id} style={styles.card}>
-              <div style={styles.cardImage}>
-                {member.image ? (
-                  <Image
-                    src={member.image}
-                    alt={member.name}
-                    width={200}
-                    height={200}
-                    style={{ width: "100%", height: "200px", objectFit: "cover", borderRadius: "8px 8px 0 0" }}
-                  />
-                ) : (
-                  <div style={styles.placeholder}>No Photo</div>
-                )}
-              </div>
-              <div style={styles.cardBody}>
-                <h4 style={styles.cardName}>{member.name}</h4>
-                <p style={styles.cardRole}>{member.designation}</p>
-                {member.description && (
-                  <p style={styles.cardDesc}>{member.description}</p>
-                )}
-                <p style={styles.cardOrder}>Order: {member.order}</p>
-                <div style={styles.cardActions}>
-                  <button onClick={() => handleEdit(member)} style={styles.editBtn}>
-                    Edit
-                  </button>
-                  <button onClick={() => handleDelete(member.id)} style={styles.deleteBtn}>
-                    Delete
-                  </button>
-                </div>
+        {/* ======================== PORTFOLIO TAB ======================== */}
+        {activeTab === "portfolio" && (
+          <>
+            <div style={styles.topBar}>
+              <h2 style={styles.sectionTitle}>Portfolio Items ({portfolioItems.length})</h2>
+              <div style={{ display: "flex", gap: "12px" }}>
+                <button onClick={handleSeedPortfolio} style={styles.secondaryBtn}>
+                  Sync from Defaults
+                </button>
+                <button
+                  onClick={() => { resetPortfolioForm(); setPortfolioFormData(prev => ({ ...prev, order: nextPortfolioOrder })); setShowPortfolioForm(true); }}
+                  style={styles.primaryBtn}
+                >
+                  + Add Portfolio Item
+                </button>
               </div>
             </div>
-          ))}
-        </div>
+
+            {showPortfolioForm && (
+              <div style={styles.formCard}>
+                <h3 style={styles.formTitle}>
+                  {editingPortfolio ? "Edit Portfolio Item" : "Add New Portfolio Item"}
+                </h3>
+                <form onSubmit={handlePortfolioSubmit}>
+                  <div style={styles.formGrid}>
+                    <div style={styles.formGroup}>
+                      <label style={styles.label}>Title *</label>
+                      <input
+                        type="text"
+                        value={portfolioFormData.title}
+                        onChange={(e) => setPortfolioFormData({ ...portfolioFormData, title: e.target.value })}
+                        required
+                        style={styles.input}
+                      />
+                    </div>
+                    <div style={styles.formGroup}>
+                      <label style={styles.label}>Category *</label>
+                      <select
+                        value={portfolioFormData.category}
+                        onChange={(e) => setPortfolioFormData({ ...portfolioFormData, category: e.target.value })}
+                        style={styles.input}
+                      >
+                        {PORTFOLIO_CATEGORIES.map((cat) => (
+                          <option key={cat} value={cat}>{cat}</option>
+                        ))}
+                      </select>
+                    </div>
+                    <div style={styles.formGroup}>
+                      <label style={styles.label}>Display Order</label>
+                      <input
+                        type="number"
+                        value={portfolioFormData.order}
+                        onChange={(e) => setPortfolioFormData({ ...portfolioFormData, order: parseInt(e.target.value) || nextPortfolioOrder })}
+                        style={styles.input}
+                      />
+                    </div>
+                    <div style={styles.formGroup}>
+                      <label style={styles.label}>Image</label>
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={handlePortfolioImageUpload}
+                        style={styles.input}
+                      />
+                      {portfolioUploading && <span style={{ fontSize: "13px", color: "#666" }}>Uploading...</span>}
+                      {portfolioFormData.img && (
+                        <div style={{ marginTop: "8px" }}>
+                          <Image
+                            src={portfolioFormData.img}
+                            alt="Preview"
+                            width={80}
+                            height={80}
+                            style={{ borderRadius: "8px", objectFit: "cover" }}
+                          />
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                  <div style={styles.formActions}>
+                    <button type="submit" style={styles.primaryBtn}>
+                      {editingPortfolio ? "Update" : "Add"} Portfolio Item
+                    </button>
+                    <button type="button" onClick={resetPortfolioForm} style={styles.secondaryBtn}>
+                      Cancel
+                    </button>
+                  </div>
+                </form>
+              </div>
+            )}
+
+            <div style={styles.grid}>
+              {portfolioItems.map((item) => (
+                <div key={item.id} style={styles.card}>
+                  <div style={styles.cardImage}>
+                    {item.img ? (
+                      <Image
+                        src={item.img}
+                        alt={item.title}
+                        width={200}
+                        height={200}
+                        style={{ width: "100%", height: "200px", objectFit: "cover", borderRadius: "8px 8px 0 0" }}
+                      />
+                    ) : (
+                      <div style={styles.placeholder}>No Image</div>
+                    )}
+                  </div>
+                  <div style={styles.cardBody}>
+                    <h4 style={styles.cardName}>{item.title}</h4>
+                    <p style={styles.cardRole}>{item.category}</p>
+                    <p style={styles.cardOrder}>Order: {item.order}</p>
+                    <div style={styles.cardActions}>
+                      <button onClick={() => handleEditPortfolio(item)} style={styles.editBtn}>
+                        Edit
+                      </button>
+                      <button onClick={() => handleDeletePortfolio(item.id)} style={styles.deleteBtn}>
+                        Delete
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </>
+        )}
       </main>
     </div>
   );
@@ -378,6 +651,39 @@ const styles: Record<string, React.CSSProperties> = {
     borderRadius: "6px",
     cursor: "pointer",
     fontSize: "13px",
+  },
+  tabBar: {
+    background: "#fff",
+    borderBottom: "1px solid #e8e8e8",
+  },
+  tabBarInner: {
+    maxWidth: "1200px",
+    margin: "0 auto",
+    padding: "0 24px",
+    display: "flex",
+    gap: "0",
+  },
+  tab: {
+    padding: "16px 24px",
+    background: "none",
+    border: "none",
+    borderBottom: "3px solid transparent",
+    cursor: "pointer",
+    fontSize: "14px",
+    fontWeight: 600,
+    color: "#888",
+    transition: "all 0.2s ease",
+  },
+  tabActive: {
+    padding: "16px 24px",
+    background: "none",
+    border: "none",
+    borderBottom: "3px solid #1a1a2e",
+    cursor: "pointer",
+    fontSize: "14px",
+    fontWeight: 600,
+    color: "#1a1a2e",
+    transition: "all 0.2s ease",
   },
   main: {
     maxWidth: "1200px",

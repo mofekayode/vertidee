@@ -8,7 +8,7 @@ const location_data = [
     country: "Lagos, Nigeria",
     time: "WAT (GMT+1)",
     location_title: "Vert Idee HQ",
-    address: "45C Sobo Arobiodu Street, Ikeja GRA, Lagos, Nigeria",
+    address: "45c Sobo Arobiodu Street, Ikeja GRA, Lagos, Nigeria",
     phone: "01-3425740, 0803 348 3009",
     mobile: "0810 323 3527",
     email: "Vertideelimited@gmail.com",

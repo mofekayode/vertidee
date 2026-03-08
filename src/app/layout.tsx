@@ -98,7 +98,7 @@ export default function RootLayout({
     url: "https://vertidee.com",
     address: {
       "@type": "PostalAddress",
-      streetAddress: "45C Sobo Arobiodu Street",
+      streetAddress: "45c Sobo Arobiodu Street",
       addressLocality: "Ikeja GRA, Lagos",
       postalCode: "101233",
       addressCountry: "NG",

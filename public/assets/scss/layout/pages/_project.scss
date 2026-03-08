@@ -45,21 +45,21 @@
         }
         & span {
             font-weight: 400;
-            font-size: 200px;
+            font-size: 120px;
             line-height: 1;
             text-transform: uppercase;
             color: var(--tp-common-black);
             @media #{$md}{
-                font-size: 150px;
+                font-size: 90px;
             }
             @media #{$xs}{
-                font-size: 70px;
+                font-size: 50px;
             }
             & img {
-                margin: 0 50px;
-                transform: translateY(-15px);
+                margin: 0 30px;
                 animation: rotate2 15s linear infinite;
-                margin-top: -40px;
+                width: 80px;
+                height: 80px;
             }
 
             &.textline-1 {

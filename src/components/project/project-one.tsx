@@ -18,55 +18,55 @@ const project_data: IProject[] = [
     id: 1,
     cls: "tp-project-mr",
     cls_2: "height-1",
-    img: "/assets/img/portfolio/activation-sampling/IMG_3450.JPG",
-    title: "Product Sampling",
-    category: "Activation",
+    img: "/assets/img/portfolio/homepage/Outdoor1.jpg",
+    title: "Billboard Campaign",
+    category: "Outdoor",
   },
   {
     id: 2,
     cls: "text-end",
     cls_2: "height-2 d-inline-flex justify-content-end",
-    img: "/assets/img/portfolio/outdoor/1.jpg",
-    title: "Billboard Campaign",
-    category: "Outdoor",
+    img: "/assets/img/portfolio/homepage/product-sampling-1.jpg",
+    title: "Product Sampling",
+    category: "Experiential Marketing",
   },
   {
     id: 3,
     cls: "tp-project-mr",
     cls_2: "height-3",
-    img: "/assets/img/portfolio/event-management/1.jpg",
-    title: "Corporate Events",
-    category: "Events",
+    img: "/assets/img/portfolio/homepage/Activation1.jpg",
+    title: "Experiential Marketing",
+    category: "Experiential Marketing",
   },
   {
     id: 4,
     cls: "",
     cls_2: "height-4",
-    img: "/assets/img/portfolio/modern-trade/3.jpg",
-    title: "Modern Trade",
-    category: "Retail",
+    img: "/assets/img/portfolio/homepage/Outdoor2.jpg",
+    title: "Outdoor Advertising",
+    category: "Outdoor",
   },
   {
     id: 5,
     cls: "tp-project-ml",
     cls_2: "height-5",
-    img: "/assets/img/portfolio/other-jobs/Enchanteur_1.jpg",
+    img: "/assets/img/portfolio/homepage/Activation2.jpg",
     title: "Brand Activation",
-    category: "Branding",
+    category: "Experiential Marketing",
   },
   {
     id: 6,
     cls: "",
     cls_2: "height-6",
-    img: "/assets/img/portfolio/training/4.jpg",
-    title: "Team Training",
-    category: "Training",
+    img: "/assets/img/portfolio/homepage/product-sampling-2.jpg",
+    title: "Product Sampling",
+    category: "Experiential Marketing",
   },
 ];
 
 function ProjectItem({ item }: { item: IProject }) {
   return (
-    <div className={`tp-project-item ${item.cls} mb-200`}>
+    <div className={`tp-project-item ${item.cls} mb-60`}>
       <div
         className={`tp-project-img ${item.cls_2} fix not-hide-cursor`}
         data-cursor="View<br>Project"
@@ -119,19 +119,23 @@ const ProjectOne = ({ style_2 = false }: IProps) => {
                       <ProjectItem key={item.id} item={item} />
                     ))}
 
-                    <div className="tp-project-btn tp-btn-trigger">
-                      <div className="tp-btn-bounce">
-                        <Link
-                          className="tp-btn-border"
-                          href="/portfolio"
-                        >
-                          <span className="tp-btn-border-wrap">
-                            <span className="text-1">View all projects</span>
-                            <span className="text-2">View all projects</span>
-                          </span>
-                        </Link>
-                      </div>
-                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-12 d-flex justify-content-center">
+                <div className="tp-project-btn tp-btn-trigger">
+                  <div className="tp-btn-bounce">
+                    <Link
+                      className="tp-btn-border"
+                      href="/portfolio"
+                    >
+                      <span className="tp-btn-border-wrap">
+                        <span className="text-1">View all projects</span>
+                        <span className="text-2">View all projects</span>
+                      </span>
+                    </Link>
                   </div>
                 </div>
               </div>

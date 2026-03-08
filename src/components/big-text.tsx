@@ -11,7 +11,7 @@ export default function BigText({ cls = "" }: IProps) {
     <div className={`sv-big-text-area pb-80 ${cls}`}>
       <div className="container container-1530">
         <div className="sv-small-text-box d-flex justify-content-between">
-          <span>ADVERTISING &amp; MARKETING</span>
+          <span>ADVERTISING AND MARKETING COMMUNICATIONS</span>
           <span>LAGOS, NIGERIA</span>
         </div>
         <div className="sv-big-text-box">

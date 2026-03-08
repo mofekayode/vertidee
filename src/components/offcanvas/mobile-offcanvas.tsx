@@ -54,7 +54,7 @@ export default function MobileOffcanvas({ openOffcanvas, setOpenOffcanvas }: IPr
                   <Link href="tel:+2348033483009">0803 348 3009</Link>
                 </li>
                 <li>
-                  <Link href="https://www.google.com/maps/place/45c+Sobo+Arobiodu+St,+Ikeja+GRA,+Ikeja+101233,+Lagos" target="_blank">45C Sobo Arobiodu St, Ikeja GRA, Lagos</Link>
+                  <Link href="https://www.google.com/maps/place/45c+Sobo+Arobiodu+St,+Ikeja+GRA,+Ikeja+101233,+Lagos" target="_blank">45c Sobo Arobiodu St, Ikeja GRA, Lagos</Link>
                 </li>
               </ul>
             </div>

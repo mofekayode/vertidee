@@ -29,7 +29,6 @@ export default function PortfolioGridFourColArea({ style_2 = false }: IProps) {
                     <span>{item.category}</span>
                   </div>
                   <div className="tp-project-5-2-content tp_fade_anim">
-                    <span className="tp-project-5-2-meta">{item.year}</span>
                     <h4 className="tp-project-5-2-title-sm">{item.title}</h4>
                   </div>
                 </Link>

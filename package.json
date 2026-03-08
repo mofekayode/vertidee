@@ -57,6 +57,7 @@
     "@types/three": "^0.164.0",
     "eslint": "^9.0.0",
     "eslint-config-next": "16.0.1",
+    "puppeteer": "^24.38.0",
     "typescript": "^5"
   }
 }

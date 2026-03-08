@@ -70,7 +70,7 @@ export default function FooterOne() {
                               href="https://www.google.com/maps/place/45c+Sobo+Arobiodu+St,+Ikeja+GRA,+Ikeja+101233,+Lagos"
                               target="_blank"
                             >
-                              45C Sobo Arobiodu Street, <br /> Ikeja GRA, Lagos
+                              45c Sobo Arobiodu Street, <br /> Ikeja GRA, Lagos
                             </Link>
                           </div>
                         </div>

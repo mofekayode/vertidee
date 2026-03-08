@@ -62,7 +62,7 @@ export default function FooterTwo({ whiteFooter = false, topCls = 'footer-top' }
                       href="https://www.google.com/maps/place/45c+Sobo+Arobiodu+St,+Ikeja+GRA,+Ikeja+101233,+Lagos"
                       target="_blank"
                     >
-                      45C Sobo Arobiodu St, Ikeja GRA, Lagos
+                      45c Sobo Arobiodu St, Ikeja GRA, Lagos
                     </Link>
                   </span>
                 </div>

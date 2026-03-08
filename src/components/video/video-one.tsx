@@ -18,25 +18,24 @@ const VideOne = () => {
         }}>
           <h2 style={{
             fontFamily: "var(--tp-ff-heading)",
-            fontSize: "clamp(36px, 6vw, 80px)",
-            fontWeight: 700,
+            fontSize: "clamp(24px, 5vw, 80px)",
+            fontWeight: 600,
             marginBottom: "10px",
             lineHeight: 1.1,
             color: "#FFFFFF",
             textShadow: "0 2px 20px rgba(0,0,0,0.7), 0 0 40px rgba(0,0,0,0.4)",
             letterSpacing: "0.04em",
           }}>Vert Idee</h2>
-          <p style={{
-            fontFamily: "var(--tp-ff-body)",
-            fontSize: "clamp(18px, 2.5vw, 32px)",
-            fontWeight: 400,
-            fontStyle: "italic",
+          <h2 style={{
+            fontFamily: "var(--tp-ff-heading)",
+            fontSize: "clamp(24px, 5vw, 80px)",
+            fontWeight: 600,
             margin: 0,
-            letterSpacing: "0.15em",
-            textTransform: "uppercase",
+            lineHeight: 1.1,
             color: "#FFFFFF",
-            textShadow: "0 1px 10px rgba(0,0,0,0.8)",
-          }}>Fresh Ideas</p>
+            textShadow: "0 2px 20px rgba(0,0,0,0.7), 0 0 40px rgba(0,0,0,0.4)",
+            letterSpacing: "0.04em",
+          }}>Fresh Ideas</h2>
         </div>
       </div>
     </div>

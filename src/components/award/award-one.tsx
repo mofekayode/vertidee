@@ -105,7 +105,6 @@ const AwardOne = ({ cls = "pt-125 pb-125", abStyle = false }: IProps) => {
                   rel={`tp-award-list-thumb-${item.id}`}
                 >
                   <div className="tp-award-list-content-left d-flex align-items-center">
-                    <span>{item.subtitle}</span>
                     <p>{item.title}</p>
                   </div>
                   <div className="tp-award-list-content-right">
