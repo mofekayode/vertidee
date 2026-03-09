@@ -11,12 +11,12 @@ const audioSamples = [
 ];
 
 const features = [
-  "Radio Jingle Production",
-  "Television Commercial (TVC) Production",
-  "Media Planning & Strategy",
-  "Media Buying & Placement",
-  "Voice-Over Production",
-  "Audio Branding",
+  "Radio Commercials, Jingles & Hypes",
+  "Television Commercials (Announsorial, Documentary)",
+  "Media Strategic Planning",
+  "Buying of Airtime on Radio, TV, Films & Cinemas",
+  "Compliance Monitoring",
+  "Press Adverts & Editorials",
 ];
 
 function WaveformPlayer({ audio, index }: { audio: { label: string; src: string }; index: number }) {

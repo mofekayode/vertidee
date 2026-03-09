@@ -12,11 +12,11 @@ const data = {
   description: "Maximize your brand visibility with our comprehensive outdoor advertising solutions. From billboards to transit advertising, we ensure your brand is seen by the right audience.",
   features: [
     "Billboard Design & Placement",
+    "BRT Adverts",
+    "Bus Stop Adverts",
+    "Lamppost Adverts",
+    "Advertising Trucks",
     "Signage Production & Installation",
-    "Transit Advertising",
-    "Environmental Branding",
-    "Street Furniture Advertising",
-    "Location Scouting & Strategy",
   ],
   images: [
     "/assets/img/portfolio/outdoor/1.jpg",

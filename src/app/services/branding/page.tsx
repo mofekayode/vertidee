@@ -15,8 +15,8 @@ const data = {
     "Office Space Branding",
     "Uniform Design & Production",
     "Corporate Gift Items",
-    "Vehicle Branding",
-    "Environmental Graphics",
+    "Brand Refresh & Sign Creation",
+    "Implementation & Maintenance",
   ],
   images: [
     "/assets/img/portfolio/general/STI_1.jpg",

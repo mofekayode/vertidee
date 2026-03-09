@@ -58,7 +58,7 @@ const menu_data: IMenuDT[] = [
   },
   {
     id: 4,
-    title: "Our Team",
+    title: "About Us",
     link: "/team",
   },
   {
@@ -111,7 +111,7 @@ export const mobile_menu_data: {
   },
   {
     id: 4,
-    title: "Our Team",
+    title: "About Us",
     link: "/team",
   },
   {
